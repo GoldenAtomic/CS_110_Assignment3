@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -50,7 +51,7 @@ public class ImageUtils {
    * @param filepath to the image.
    * @return the 2D Color array.
    */
-  public Color[][] loadImage(String filepath) {
+  public Color[][] loadImage(String filepath) throws Exception {
     // Load in the image.
     BufferedImage buffImg = loadBufferedImage(filepath);
     // Convert that image to the 2D array of colors and return it.
@@ -144,7 +145,7 @@ public class ImageUtils {
     try {
       // Read the (image) File the path directs to.
       img = ImageIO.read(new File(filepath));
-    } catch (IOException e) {
+    } catch (Exception e) {
       System.out.println("Could not load the image, please ensure the filepath"
           + " was properly specified.");
       e.printStackTrace();
